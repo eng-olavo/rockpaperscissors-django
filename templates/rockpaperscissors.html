@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+    <title>Rock, Paper, Scissors....</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Rock, Paper & Scissors.....</h1>
+        <hr>
+    </div>
+    
+
+    <form action="">
+    
+        <div class="container">
+            <fieldset>
+                <legend>Faça a sua escolha : </legend>
+                <input type="radio" id="Rock" name="choice" value="Rock">
+                <label for="Rock">Rock</label><br>
+                <input type="radio" id="Paper" name="choice" value="Paper">
+                <label for="Paper">Paper</label><br>
+                <input type="radio" id="Scissors" name="choice" value="Scissors">
+                <label for="Scissors">Scissors</label><br>
+            </fieldset><br>
+            <button type="button" onclick="run()">Play!</button>
+            <hr>
+            <label for="jogador1">Jogador1 : </label>
+            <input type="text" name="jogador1" id="jogador1">
+            <br><br>
+            <label for="jogador1">Computador : </label>
+            <input type="text" name="computador" id="computador">
+            <br><br>
+            <label for="jogador1">Resultado : </label>
+            <input type="text" name="resultado" id="resultado" size="75">
+            <br><br>
+            <hr>
+            <h5>PLACAR</h5>
+            <label for="placar_jogador1">Jogador 1 : </label>
+            <input type="text" name="placar_jogador1" id="placar_jogador1"><br><br>
+            <label for="placar_computador">Computador : </label>
+            <input type="text" name="placar_computador" id="placar_computador">
+        </div>
+        
+            
+    </form>
+
+    <script>
+
+        var score_jogador1 = 0; 
+        var score_computador = 0;
+        var winner = "";       
+        
+        function run() {                
+
+            var escolha = document.querySelector('input[name = "choice"]:checked').value;
+            document.getElementById("jogador1").value = escolha;
+
+            var choices = ['Rock', 'Paper', 'Scissors']
+            var computador_choice = choices[Math.floor(Math.random() * choices.length)]
+            document.getElementById("computador").value = computador_choice
+            
+            if (escolha == computador_choice) {
+                document.getElementById("resultado").value = "Empate!";
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+
+            if (escolha == "Rock" & computador_choice == "Scissors") {
+                document.getElementById("resultado").value = "Rock craches Scissors! - O Jogador Ganhou!";
+                score_jogador1 += 1;
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+
+            if (escolha == "Rock" & computador_choice == "Paper") {
+                document.getElementById("resultado").value = "Paper covers Rock! - O computador Ganhou!";
+                score_computador += 1;
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+
+            if (escolha == "Paper" & computador_choice == "Rock") {
+                document.getElementById("resultado").value = "Paper covers Rock! - O Jogador Ganhou!";
+                score_jogador1 += 1;
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+
+            if (escolha == "Paper" & computador_choice == "Scissors") {
+                document.getElementById("resultado").value = "Scissors cuts Paper! - O computador Ganhou!";
+                score_computador += 1;
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+
+            if (escolha == "Scissors" & computador_choice == "Paper") {
+                document.getElementById("resultado").value = "Scissors cuts Paper! - O Jogador Ganhou!";
+                score_jogador1 += 1;
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+
+            if (escolha == "Scissors" & computador_choice == "Rock") {
+                document.getElementById("resultado").value = "Rock craches Scissors! - O computador Ganhou!";
+                score_computador += 1;
+                document.getElementById("placar_jogador1").value = score_jogador1;
+                document.getElementById("placar_computador").value = score_computador;
+            }
+            
+            if (score_computador == 6) {
+
+                alert("O computador venceu a partida !!!! " + score_computador + " X " + score_jogador1);
+                score_jogador1 = 0;
+                score_computador = 0;
+
+            }
+
+            if (score_jogador1 == 6) {
+
+                alert("O jogador venceu a partida !!!! " + score_jogador1 + " X " + score_computador);
+                score_jogador1 = 0;
+                score_computador = 0;
+            }
+        }
+
+        
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
